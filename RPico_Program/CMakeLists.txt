@@ -28,40 +28,40 @@ set(PICO_BOARD pico CACHE STRING "Board type")
 # Pull in Raspberry Pi Pico SDK (must be before project)
 include(pico_sdk_import.cmake)
 
-project(phase_ctrl C CXX ASM)
+project(main C CXX ASM)
 
 # Initialise the Raspberry Pi Pico SDK
 pico_sdk_init()
 
 # Add executable. Default name is the project name, version 0.1
 
-add_executable(phase_ctrl phase_ctrl.c triac_control.c pid_control.c max31855.c uart_comm.c) 
+add_executable(main main.c triac_control.c pid_control.c max31855.c uart_comm.c) 
 
-pico_set_program_name(phase_ctrl "phase_ctrl")
-pico_set_program_version(phase_ctrl "0.1")
+pico_set_program_name(main "main")
+pico_set_program_version(main "0.1")
 
 # Modify the below lines to enable/disable output over UART/USB
-pico_enable_stdio_uart(phase_ctrl 1)
-pico_enable_stdio_usb(phase_ctrl 0)
+pico_enable_stdio_uart(main 1)
+pico_enable_stdio_usb(main 0)
 
 # Add the standard library to the build
-target_link_libraries(phase_ctrl
+target_link_libraries(main
         pico_stdlib
         pico_multicore
         )
 
 # Add the standard include files to the build
-target_include_directories(phase_ctrl PRIVATE
+target_include_directories(main PRIVATE
   ${CMAKE_CURRENT_LIST_DIR}
 )
 
 # Add any user requested libraries
-target_link_libraries(phase_ctrl 
+target_link_libraries(main 
         hardware_clocks
         hardware_adc
         hardware_spi
         hardware_gpio
         )
 
-pico_add_extra_outputs(phase_ctrl)
+pico_add_extra_outputs(main)
 
