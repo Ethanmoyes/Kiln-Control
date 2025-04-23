@@ -1,0 +1,8 @@
+// Ignore the build directory
+RPico_Program/build
+RPico_Program/.vscode
+RPico_Program/.vscode_file_backup
+RPico_Program/pico_sdk_import.cmake
+
+.vscode
+
